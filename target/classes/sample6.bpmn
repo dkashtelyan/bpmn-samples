@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_02nemac" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="sample6" name="Delayed Retries" isExecutable="true" camunda:versionTag="1">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_0t6oi6j</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1j6l3by">
+      <bpmn:incoming>Flow_0s36q98</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_0s36q98" sourceRef="Notify" targetRef="Event_1j6l3by" />
+    <bpmn:boundaryEvent id="Event_05tndfa" attachedToRef="Notify">
+      <bpmn:outgoing>Flow_1x74foy</bpmn:outgoing>
+      <bpmn:errorEventDefinition id="ErrorEventDefinition_0zhmcxw" />
+    </bpmn:boundaryEvent>
+    <bpmn:intermediateCatchEvent id="Event_072n3t9" camunda:asyncBefore="true">
+      <bpmn:incoming>Flow_1x74foy</bpmn:incoming>
+      <bpmn:outgoing>Flow_1xwpj9m</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1fwyowl">
+        <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT10S</bpmn:timeDuration>
+      </bpmn:timerEventDefinition>
+    </bpmn:intermediateCatchEvent>
+    <bpmn:sequenceFlow id="Flow_1x74foy" sourceRef="Event_05tndfa" targetRef="Event_072n3t9" />
+    <bpmn:exclusiveGateway id="Gateway_1rzoqn7">
+      <bpmn:incoming>Flow_0t6oi6j</bpmn:incoming>
+      <bpmn:incoming>Flow_1xwpj9m</bpmn:incoming>
+      <bpmn:outgoing>Flow_0eordf0</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0t6oi6j" sourceRef="StartEvent_1" targetRef="Gateway_1rzoqn7" />
+    <bpmn:sequenceFlow id="Flow_0eordf0" sourceRef="Gateway_1rzoqn7" targetRef="Notify" />
+    <bpmn:sequenceFlow id="Flow_1xwpj9m" sourceRef="Event_072n3t9" targetRef="Gateway_1rzoqn7" />
+    <bpmn:serviceTask id="Notify" name="notify" camunda:class="bpmn.sample6.NotifyDelegate">
+      <bpmn:incoming>Flow_0eordf0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0s36q98</bpmn:outgoing>
+    </bpmn:serviceTask>
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="sample6">
+      <bpmndi:BPMNEdge id="Flow_0s36q98_di" bpmnElement="Flow_0s36q98">
+        <di:waypoint x="510" y="120" />
+        <di:waypoint x="562" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1x74foy_di" bpmnElement="Flow_1x74foy">
+        <di:waypoint x="460" y="178" />
+        <di:waypoint x="460" y="212" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0t6oi6j_di" bpmnElement="Flow_0t6oi6j">
+        <di:waypoint x="228" y="120" />
+        <di:waypoint x="295" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0eordf0_di" bpmnElement="Flow_0eordf0">
+        <di:waypoint x="345" y="120" />
+        <di:waypoint x="410" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1xwpj9m_di" bpmnElement="Flow_1xwpj9m">
+        <di:waypoint x="442" y="230" />
+        <di:waypoint x="320" y="230" />
+        <di:waypoint x="320" y="145" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="Event_1j6l3by_di" bpmnElement="Event_1j6l3by">
+        <dc:Bounds x="562" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_01x8oo1_di" bpmnElement="Event_072n3t9">
+        <dc:Bounds x="442" y="212" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="192" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1rzoqn7_di" bpmnElement="Gateway_1rzoqn7" isMarkerVisible="true">
+        <dc:Bounds x="295" y="95" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0jm8l98_di" bpmnElement="Notify">
+        <dc:Bounds x="410" y="80" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1ttj3au_di" bpmnElement="Event_05tndfa">
+        <dc:Bounds x="442" y="142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

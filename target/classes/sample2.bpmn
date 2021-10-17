@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0a3uq0g" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:process id="sample2" name="Sample 2" isExecutable="true" camunda:versionTag="1">
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_1877v6h</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_1nfuueq">
+      <bpmn:incoming>Flow_0jxxvd8</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1877v6h" sourceRef="StartEvent_1" targetRef="Activity_02l9p44" />
+    <bpmn:sequenceFlow id="Flow_1ixte2z" sourceRef="Activity_02l9p44" targetRef="Activity_1i41sxr" />
+    <bpmn:sequenceFlow id="Flow_0jxxvd8" sourceRef="Activity_1i41sxr" targetRef="Event_1nfuueq" />
+    <bpmn:serviceTask id="Activity_02l9p44" camunda:class="bpmn.sample2.Sample2Service1">
+      <bpmn:incoming>Flow_1877v6h</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ixte2z</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="Activity_1i41sxr" camunda:asyncBefore="true" camunda:class="bpmn.sample2.Sample2Service2">
+      <bpmn:incoming>Flow_1ixte2z</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jxxvd8</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:textAnnotation id="TextAnnotation_1x72ns3">
+      <bpmn:text>Sample2Service1 Creates complex variables</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_1wgod63" sourceRef="Activity_02l9p44" targetRef="TextAnnotation_1x72ns3" />
+    <bpmn:textAnnotation id="TextAnnotation_09wxgar">
+      <bpmn:text>Sample2Service2 Reads variables from saved state</bpmn:text>
+    </bpmn:textAnnotation>
+    <bpmn:association id="Association_0aldayp" sourceRef="Activity_1i41sxr" targetRef="TextAnnotation_09wxgar" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="sample2">
+      <bpmndi:BPMNShape id="TextAnnotation_1x72ns3_di" bpmnElement="TextAnnotation_1x72ns3">
+        <dc:Bounds x="380" y="50" width="137" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="TextAnnotation_09wxgar_di" bpmnElement="TextAnnotation_09wxgar">
+        <dc:Bounds x="570" y="50" width="133" height="54" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1877v6h_di" bpmnElement="Flow_1877v6h">
+        <di:waypoint x="215" y="177" />
+        <di:waypoint x="280" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ixte2z_di" bpmnElement="Flow_1ixte2z">
+        <di:waypoint x="380" y="177" />
+        <di:waypoint x="470" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jxxvd8_di" bpmnElement="Flow_0jxxvd8">
+        <di:waypoint x="570" y="177" />
+        <di:waypoint x="662" y="177" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1nfuueq_di" bpmnElement="Event_1nfuueq">
+        <dc:Bounds x="662" y="159" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1aunj8y_di" bpmnElement="Activity_02l9p44">
+        <dc:Bounds x="280" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1ouwva3_di" bpmnElement="Activity_1i41sxr">
+        <dc:Bounds x="470" y="137" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Association_1wgod63_di" bpmnElement="Association_1wgod63">
+        <di:waypoint x="366" y="137" />
+        <di:waypoint x="395" y="104" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Association_0aldayp_di" bpmnElement="Association_0aldayp">
+        <di:waypoint x="556" y="137" />
+        <di:waypoint x="585" y="104" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>

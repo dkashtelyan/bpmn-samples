@@ -1,0 +1,6 @@
+
+H
+java:S2864"4Iterate over the "entrySet" instead of the "keySet".(€‘Ñ¢
+Q	java:S106"9Replace this use of System.out or System.err by a logger.(°­ýºýÿÿÿÿ
+b
+java:S4201"IRemove this unnecessary null check; "instanceof" returns false for nulls.(ˆ——©úÿÿÿÿ

@@ -1,0 +1,20 @@
+spring.datasource:
+  url:  jdbc:mysql://localhost:3306/camunda?tz=useLegacyDatetimeCode=false&serverTimezone=America/New_York
+  username: camunda
+  password: camunda
+spring.h2.console.enabled: true
+camunda.bpm:
+  history-level: full
+  admin-user:
+    id: demo
+    password: demo
+    firstName: Demo
+    lastName: Demo
+  filter:
+    create: All Tasks
+  job-execution:
+    max-wait: 10000
+    max-jobs-per-acquisition: 5
+server.port: 8080
+
+
